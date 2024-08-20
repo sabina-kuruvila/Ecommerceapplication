@@ -1,0 +1,46 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+<style>
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+  }
+
+  .card-link:hover {
+    color: rgb(229, 229, 231);
+    /* Change text color on hover */
+  }
+</style>
+<div style="background-color: rgb(140, 91, 27); padding: 20px;">
+  <div class="row" style="background-color: rgb(163, 109, 164);">
+    {% for product in products %}
+    <div class="col-md-3 mb-3">
+      <div class="d-grid p-3 col-3 gap-1">
+        <a href="/products/{{product.id}}" class="card-link">
+          <div class="card" style="width: 20rem; height: 650px;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    padding: 16px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    overflow: hidden; background-color:rgb(212, 173, 75) ;">
+            <img src="{{ product.image_url }}" class="card-img-top object-fit-contain border rounded"
+              style="height: 420px;" />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+                text-overflow: ellipsis;line-height: 1.2em; height: 3.6em;">{{ product.description }}
+              <p class="card-text">${{ product.price }}</p>
+            </div>
+
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
